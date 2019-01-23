@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+   
+   <bean id="databaseQLNhanSu" class="com.FCdemo.setting.dbQLNhanSuDAO">
+   		<property name="dataSource" ref="dataSource"></property>
+   </bean>
+   
+   <bean id="databaseQLLoai" class="com.FCdemo.setting.dbQLLoaiDAO">
+   		<property name="dataSource" ref="dataSource"></property>
+   </bean>
+   
+   <bean id="databaseQLTaiChinh" class="com.FCdemo.setting.dbQLTaiChinhDAO">
+   		<property name="dataSource" ref="dataSource"></property>
+   </bean>
+   
+   <bean id="search" class="com.FCdemo.setting.searchListDAO">
+   		<property name="dataSource" ref="dataSource"></property>
+   </bean>
+   
+    <bean id="sum" class="com.FCdemo.setting.dbSumDAO">
+   		<property name="dataSource" ref="dataSource"></property>
+   </bean>
+   
+   <bean id="account" class="com.FCdemo.setting.dbAccountDAO">
+   		<property name="dataSource" ref="dataSource"></property>
+   </bean>
+   
+   <bean id="QLRole" class="com.FCdemo.setting.dbQLRoleDAO" >
+   		<property name="dataSource" ref="dataSource" ></property>
+   </bean>
+   
+		    
+   <bean id = "dataSource"
+   class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+   <property name = "driverClassName" value = "net.sourceforge.jtds.jdbc.Driver"/>
+   <property name = "url" value = "jdbc:jtds:sqlserver://localhost:1433/FCManager;"/>
+   <property name = "username" value = "sa"/>
+   <property name = "password" value = "1234"/>
+</bean>
+   
+</beans>

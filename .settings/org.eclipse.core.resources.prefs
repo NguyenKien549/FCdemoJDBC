@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/FCdemo/model/NhanSu.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/addEmp2.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/error.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/filtertable.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/information.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/viewDeleteEmp.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/viewDeleteFinance.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/viewUpdateEmp.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/viewUpdateFinance.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/viewdeleteKind.jsp=UTF-8

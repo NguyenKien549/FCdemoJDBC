@@ -1,0 +1,60 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+ 	http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+
+	<http auto-config="true">
+    	<intercept-url pattern="/Employee/*" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPER ADMIN')"/>
+    	<intercept-url pattern="/FCmanager" access	="isAuthenticated()" />
+    	<intercept-url pattern="/type/*" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPER ADMIN')"/> 
+    	<intercept-url pattern="/finance/*" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPER ADMIN')"/> 
+    	<intercept-url pattern="/listfinance" access="hasRole('ROLE_USER')" /> 
+    	<intercept-url pattern="/search" access="hasRole('ROLE_USER')" /> 
+    	<intercept-url pattern="/*" access="hasRole('ROLE_SUPER ADMIN')" /> 
+
+    	<form-login login-page="/login"
+    				login-processing-url="/j_spring_security_login"
+    				default-target-url="/FCmanager"
+    				authentication-failure-url="/login?error"
+    				username-parameter="username"
+    				password-parameter="password"/>
+    				
+<!--     	<logout logout-url="/logout" -->
+<!--     				delete-cookies="JSESSIONID"/> -->
+<!--     				access denied page -->
+		<access-denied-handler error-page="/error" />
+		
+		 <session-management> <!-- session-fixation-protection="migrateSession" session-authentication-error-url="/logout">  -->
+            <concurrency-control  max-sessions="1" session-registry-alias="sessionRegistry"/>
+        </session-management>
+		
+<!-- 		<remember-me key="remember-me"/> -->
+<!--     			enable csrf protection -->
+		<csrf/>
+    </http>
+  
+	<!-- Select users and user_roles from database -->
+<!-- <beans:bean id="bcrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/> -->
+<authentication-manager>
+    <authentication-provider>
+<!--     <password-encoder ref="bcrypt"/> -->
+      <jdbc-user-service data-source-ref="dataSource1"
+        users-by-username-query="select username,password,Enable from Account where username=?"
+        authorities-by-username-query="select username, concat('ROLE_',role) from user_role  where username =? " />
+    </authentication-provider>
+  </authentication-manager>
+
+<!-- <beans:bean class="com.security.sample.URLAuthorizeProcessor"> -->
+<!--         <beans:property name="programURLSource"> -->
+<!--             <beans:bean class="com.security.sample.ProgramURLSource"> -->
+<!--                 <beans:property name="sqlSession" ref="sqlSessionTemplate"></beans:property> -->
+<!--             </beans:bean> -->
+<!--         </beans:property> -->
+<!--     </beans:bean> -->
+
+
+</beans:beans>
